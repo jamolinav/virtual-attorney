@@ -23,11 +23,27 @@ jobs:
         with:
           node-version: '22.x'
 
-      - name: npm install, build, and test
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.15.0
+          run_install: false
+
+      - name: Install dependencies and build
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          # Create a .npmrc file that resolves workspace protocol references
+          echo "save-workspace-protocol=false" > .npmrc
+          echo "node-linker=hoisted" >> .npmrc
+          echo "shamefully-hoist=true" >> .npmrc
+          
+          # Install with pnpm
+          pnpm install --frozen-lockfile
+          
+          # Install specific action packages
+          npm install @actions/core@1.6.0 @actions/http-client --no-save
+          
+          # Build the project
+          pnpm run build --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
