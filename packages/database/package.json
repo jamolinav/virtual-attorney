@@ -10,7 +10,7 @@
     "prisma/**"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup src/index.ts --dts --format cjs,esm --out-dir dist --clean",
     "dev": "tsup --watch",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
