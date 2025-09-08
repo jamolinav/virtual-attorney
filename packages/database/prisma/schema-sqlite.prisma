@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Usuarios y autenticación
+model User {
+  id             String     @id @default(uuid())
+  email          String     @unique
+  password_hash  String
+  role           String     @default("USER") // Reemplazado de enum Role
+  first_name     String?
+  last_name      String?
+  saldo          Float      @default(0)
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+  conversations  Conversation[]
+  payments       Payment[]
+  tickets        TicketSoporte[]
+  causas         Causa[]
+  audit_logs     AuditLog[]
+}
+
+// Conversaciones y mensajes
+model Conversation {
+  id             String     @id @default(uuid())
+  user_id        String?
+  user           User?      @relation(fields: [user_id], references: [id], onDelete: SetNull)
+  tipo           String     // Reemplazado de ConversationType enum (GENERAL o CAUSA)
+  estado         String     @default("ACTIVE") // Reemplazado de enum ConversationStatus
+  metadata       String?    // Reemplazado de Json? (almacenará JSON como string)
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+  retention_until DateTime
+  messages       Message[]
+  causa_id       String?
+  causa          Causa?     @relation(fields: [causa_id], references: [id], onDelete: SetNull)
+}
+
+model Message {
+  id             String     @id @default(uuid())
+  conversation_id String
+  conversation   Conversation @relation(fields: [conversation_id], references: [id], onDelete: Cascade)
+  role           String     // Reemplazado de enum MessageRole (USER, ASSISTANT, SYSTEM, TOOL)
+  content        String
+  tokens         Int?
+  cost           Float?
+  metadata       String?    // Reemplazado de Json? (almacenará JSON como string)
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+}
+
+// Causas y documentos
+model Causa {
+  id             String     @id @default(uuid())
+  rit_year       Int
+  rit_numero     String
+  juzgado        String
+  estado         String
+  metadata       String?    // Reemplazado de Json? (almacenará JSON como string)
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+  retention_until DateTime
+  owner_user_id  String?
+  owner          User?      @relation(fields: [owner_user_id], references: [id], onDelete: SetNull)
+  documentos     CausaDocumento[]
+  conversations  Conversation[]
+
+  @@unique([rit_year, rit_numero, juzgado])
+}
+
+model CausaDocumento {
+  id             String     @id @default(uuid())
+  causa_id       String
+  causa          Causa      @relation(fields: [causa_id], references: [id], onDelete: Cascade)
+  title          String
+  storage_url    String
+  storage_path   String
+  sha256         String
+  mime_type      String?
+  size           Int?
+  uploaded_at    DateTime   @default(now())
+  metadata       String?    // Reemplazado de Json? (almacenará JSON como string)
+}
+
+// Pagos y suscripciones
+model Payment {
+  id             String     @id @default(uuid())
+  user_id        String
+  user           User       @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  provider       String     // Reemplazado de enum PaymentProvider (STRIPE, TRANSFER, ADMIN)
+  provider_id    String?
+  amount         Float
+  currency       String     @default("CLP")
+  status         String     // Reemplazado de enum PaymentStatus (PENDING, COMPLETED, FAILED, REFUNDED)
+  metadata       String?    // Reemplazado de Json? (almacenará JSON como string)
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+}
+
+model Plan {
+  id             String     @id @default(uuid())
+  name           String
+  description    String?
+  price          Float
+  currency       String     @default("CLP")
+  limits         String     // Reemplazado de Json (almacenará JSON como string)
+  is_active      Boolean    @default(true)
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+}
+
+// Soporte
+model TicketSoporte {
+  id             String     @id @default(uuid())
+  user_id        String?
+  user           User?      @relation(fields: [user_id], references: [id], onDelete: SetNull)
+  email          String
+  asunto         String
+  mensaje        String
+  estado         String     @default("PENDING") // Reemplazado de enum TicketStatus
+  respuesta      String?
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+}
+
+// Auditoría y configuración
+model AuditLog {
+  id             String     @id @default(uuid())
+  actor_id       String?
+  actor          User?      @relation(fields: [actor_id], references: [id], onDelete: SetNull)
+  action         String
+  entity         String
+  entity_id      String?
+  before         String?    // Reemplazado de Json? (almacenará JSON como string)
+  after          String?    // Reemplazado de Json? (almacenará JSON como string)
+  ip             String?
+  user_agent     String?
+  created_at     DateTime   @default(now())
+}
+
+model AppSettings {
+  key            String     @id
+  value          String
+  type           String     // Reemplazado de enum SettingType (STRING, INTEGER, FLOAT, BOOLEAN, JSON, HTML)
+  description    String?
+  updated_by     String?
+  updated_at     DateTime   @updatedAt
+}

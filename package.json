@@ -1,0 +1,46 @@
+{
+  "name": "virtual-attorney",
+  "version": "1.0.0",
+  "description": "Una aplicación web responsiva para interactuar con un asistente OpenAI que actúa como abogado virtual de Chile",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "dev": "pnpm --filter \"@virtual-attorney/*\" run dev",
+    "build": "pnpm --filter \"@virtual-attorney/*\" run build",
+    "lint": "pnpm --filter \"@virtual-attorney/*\" run lint",
+    "test": "pnpm --filter \"@virtual-attorney/*\" run test",
+    "clean": "pnpm -r exec rm -rf node_modules dist .next .turbo",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dx:seed": "pnpm --filter \"@virtual-attorney/api\" run seed"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "keywords": [
+    "legal",
+    "openai",
+    "chatbot",
+    "judicial",
+    "chile"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.10.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0",
+    "commitlint": "^18.0.0",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0"
+  }
+}

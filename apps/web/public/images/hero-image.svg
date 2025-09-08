@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <rect width="800" height="800" fill="#3498db"/>
+  <text x="400" y="400" font-family="Arial, sans-serif" font-size="48" text-anchor="middle" fill="#FFFFFF" dy=".3em">Abogado Virtual</text>
+  <text x="400" y="470" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="#FFFFFF" dy=".3em">Asistente Legal</text>
+</svg>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abogado Virtual Chile - Vista previa</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  <style>
+    /* Custom styling */
+    .hero-circle {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .hero-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      70% {
+        transform: scale(1.05);
+        opacity: 0.3;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+    }
+    
+    .card {
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    }
+    
+    .nav-link {
+      transition: all 0.3s ease;
+    }
+    
+    body {
+      padding-top: 76px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <div class="bg-primary text-white d-flex align-items-center justify-content-center rounded-circle me-2" style="width:32px;height:32px;">
+          <span class="fw-bold">A</span>
+        </div>
+        <span class="fw-bold">Abogado Virtual</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <a class="nav-link px-3 active" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#">Precios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#">Documentos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="#">FAQ</a>
+          </li>
+        </ul>
+        
+        <div class="d-flex">
+          <a href="#" class="btn btn-outline-primary me-2">
+            Iniciar sesión
+          </a>
+          <a href="#" class="btn btn-primary">
+            Registrarse
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="container-fluid py-5 bg-light">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="text-center text-lg-start">
+            <span class="badge bg-primary mb-3">Asistencia Legal Inteligente</span>
+            <h1 class="display-4 fw-bold mb-4">Asistencia legal para todos los chilenos</h1>
+            <p class="lead text-muted mb-5">
+              Resuelve tus dudas legales con nuestro asistente virtual especializado en leyes chilenas, disponible 24/7.
+            </p>
+            <div class="d-grid d-md-block gap-3">
+              <a href="#" class="btn btn-primary btn-lg px-5 me-md-3 mb-3 mb-md-0">
+                Consulta gratuita
+              </a>
+              <a href="#" class="btn btn-outline-secondary btn-lg px-5">
+                Ver servicios
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="text-center">
+            <div class="position-relative d-inline-block">
+              <div class="rounded-circle position-absolute top-0 start-0 end-0 bottom-0 border border-2 border-primary hero-pulse"></div>
+              <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto hero-circle">
+                <div class="fw-bold fs-1 text-center">
+                  Abogado<br/>Virtual<br/>Chile
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="container-fluid py-5">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <span class="badge bg-primary mb-3">Nuestros Servicios</span>
+        <h2 class="display-5 fw-bold mb-3">Soluciones legales completas</h2>
+        <p class="lead text-muted mx-auto" style="max-width: 800px;">
+          Nuestro abogado virtual ofrece una amplia gama de servicios para ayudarte con tus necesidades legales en Chile.
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 text-center">
+              <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                <i class="bi bi-chat-dots-fill text-primary fs-2"></i>
+              </div>
+              <h3 class="card-title h5 fw-bold mb-3">Consultas Instantáneas</h3>
+              <p class="card-text text-muted">
+                Recibe respuestas legales inmediatas a cualquier hora del día o de la noche, sin esperas ni citas.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 text-center">
+              <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                <i class="bi bi-shield-fill-check text-primary fs-2"></i>
+              </div>
+              <h3 class="card-title h5 fw-bold mb-3">Privacidad Garantizada</h3>
+              <p class="card-text text-muted">
+                Todas tus consultas son tratadas con absoluta confidencialidad y protegidas por encriptación de nivel bancario.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 text-center">
+              <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                <i class="bi bi-book-fill text-primary fs-2"></i>
+              </div>
+              <h3 class="card-title h5 fw-bold mb-3">Conocimiento Actualizado</h3>
+              <p class="card-text text-muted">
+                Nuestro sistema se mantiene al día con la última legislación chilena y jurisprudencia relevante.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 text-center">
+              <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                <i class="bi bi-hammer text-primary fs-2"></i>
+              </div>
+              <h3 class="card-title h5 fw-bold mb-3">Revisión de Documentos</h3>
+              <p class="card-text text-muted">
+                Sube contratos, documentos legales o cartas para análisis y recomendaciones personalizadas.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 5 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 text-center">
+              <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                <i class="bi bi-file-text-fill text-primary fs-2"></i>
+              </div>
+              <h3 class="card-title h5 fw-bold mb-3">Generación de Documentos</h3>
+              <p class="card-text text-muted">
+                Crea borradores de cartas legales, contratos simples y reclamaciones formales con nuestro asistente.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 6 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-body p-4 text-center">
+              <div class="rounded-circle bg-primary bg-opacity-10 p-3 d-inline-flex mb-3">
+                <i class="bi bi-clock-fill text-primary fs-2"></i>
+              </div>
+              <h3 class="card-title h5 fw-bold mb-3">Historial de Consultas</h3>
+              <p class="card-text text-muted">
+                Accede a todas tus consultas anteriores y documentos generados en cualquier momento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="container-fluid py-5 bg-primary text-white">
+    <div class="container py-5 text-center">
+      <span class="badge bg-white text-primary mb-3">Disponible 24/7</span>
+      <h2 class="display-5 fw-bold mb-4">¿Necesitas asistencia legal ahora mismo?</h2>
+      <p class="lead mb-5 mx-auto" style="max-width: 800px;">
+        Consulta con nuestro Abogado Virtual y obtén respuestas inmediatas a tus preguntas legales, sin esperas ni citas previas.
+      </p>
+      <a href="#" class="btn btn-lg btn-light px-5 py-3 fw-medium">
+        Iniciar consulta gratuita
+      </a>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container-fluid py-5 bg-light">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <span class="badge bg-primary mb-3">Testimonios</span>
+        <h2 class="display-5 fw-bold mb-3">Lo que dicen nuestros usuarios</h2>
+        <p class="lead text-muted mx-auto" style="max-width: 700px;">
+          Miles de chilenos ya han resuelto sus dudas legales con nuestro asistente virtual.
+        </p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Testimonial 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm p-4">
+            <div class="card-body">
+              <div class="mb-3">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+              </div>
+              <p class="card-text mb-4">"El abogado virtual me ayudó a entender cómo estructurar mi nuevo negocio legalmente. Fue rápido, claro y muy útil."</p>
+              <div class="d-flex align-items-center">
+                <div class="bg-primary bg-opacity-10 rounded-circle text-primary fw-bold d-flex align-items-center justify-content-center me-3" style="width:48px;height:48px;">
+                  M
+                </div>
+                <div>
+                  <h6 class="card-title mb-0">María González</h6>
+                  <small class="text-muted">Emprendedora</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm p-4">
+            <div class="card-body">
+              <div class="mb-3">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+              </div>
+              <p class="card-text mb-4">"Tenía dudas sobre mi contrato de arriendo y en minutos obtuve respuestas claras sobre mis derechos. ¡Excelente servicio!"</p>
+              <div class="d-flex align-items-center">
+                <div class="bg-primary bg-opacity-10 rounded-circle text-primary fw-bold d-flex align-items-center justify-content-center me-3" style="width:48px;height:48px;">
+                  C
+                </div>
+                <div>
+                  <h6 class="card-title mb-0">Carlos Rodríguez</h6>
+                  <small class="text-muted">Arrendatario</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="card h-100 border-0 shadow-sm p-4">
+            <div class="card-body">
+              <div class="mb-3">
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+                <i class="bi bi-star-fill text-warning me-1"></i>
+              </div>
+              <p class="card-text mb-4">"Consulté sobre un problema laboral y me orientó perfectamente. Ahora sé exactamente cómo proceder y cuáles son mis derechos."</p>
+              <div class="d-flex align-items-center">
+                <div class="bg-primary bg-opacity-10 rounded-circle text-primary fw-bold d-flex align-items-center justify-content-center me-3" style="width:48px;height:48px;">
+                  D
+                </div>
+                <div>
+                  <h6 class="card-title mb-0">Daniela Pérez</h6>
+                  <small class="text-muted">Trabajadora</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+          <div class="d-flex align-items-center mb-3">
+            <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-2" style="width:32px;height:32px;">
+              <span class="fw-bold">A</span>
+            </div>
+            <h5 class="mb-0">Abogado Virtual</h5>
+          </div>
+          <p class="text-white-50 mb-4">
+            Asistencia legal inteligente para todos los chilenos, disponible 24/7.
+          </p>
+          <div class="d-flex mb-4">
+            <a href="#" class="text-decoration-none me-3">
+              <i class="bi bi-facebook fs-5 text-white-50"></i>
+            </a>
+            <a href="#" class="text-decoration-none me-3">
+              <i class="bi bi-twitter fs-5 text-white-50"></i>
+            </a>
+            <a href="#" class="text-decoration-none me-3">
+              <i class="bi bi-instagram fs-5 text-white-50"></i>
+            </a>
+            <a href="#" class="text-decoration-none">
+              <i class="bi bi-linkedin fs-5 text-white-50"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase fw-bold mb-4">Servicios</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">
+              <a href="#" class="text-white-50 text-decoration-none">Consultas Legales</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-white-50 text-decoration-none">Documentos Legales</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-white-50 text-decoration-none">Servicios Premium</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-white-50 text-decoration-none">Planes y Precios</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+          <h6 class="text-uppercase fw-bold mb-4">Empresa</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">
+              <a href="#" class="text-white-50 text-decoration-none">Sobre Nosotros</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-white-50 text-decoration-none">Preguntas Frecuentes</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-white-50 text-decoration-none">Contacto</a>
+            </li>
+            <li class="mb-2">
+              <a href="#" class="text-white-50 text-decoration-none">Blog</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 col-md-6">
+          <h6 class="text-uppercase fw-bold mb-4">Contáctanos</h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-3">
+              <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+              <span class="text-white-50">Av. Libertador Bernardo O'Higgins 1234, Santiago, Chile</span>
+            </li>
+            <li class="mb-3">
+              <i class="bi bi-envelope-fill text-primary me-2"></i>
+              <span class="text-white-50">contacto@abogadovirtual.cl</span>
+            </li>
+            <li class="mb-3">
+              <i class="bi bi-telephone-fill text-primary me-2"></i>
+              <span class="text-white-50">+56 2 2123 4567</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <hr class="my-4 bg-secondary" />
+      
+      <div class="row align-items-center">
+        <div class="col-md-7 mb-3 mb-md-0">
+          <p class="text-white-50 mb-0">
+            &copy; 2025 Abogado Virtual Chile. Todos los derechos reservados.
+          </p>
+        </div>
+        <div class="col-md-5 text-md-end">
+          <a href="#" class="text-white-50 text-decoration-none me-3">
+            Términos y Condiciones
+          </a>
+          <a href="#" class="text-white-50 text-decoration-none">
+            Privacidad
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

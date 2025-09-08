@@ -1,0 +1,6 @@
+{
+  "extends": "@virtual-attorney/eslint-config/nextjs.js",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
