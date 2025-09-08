@@ -16,17 +16,17 @@ jobs:
 
       - uses: pnpm/action-setup@v3
         with:
-          version: 8.15.0
+          version: 10.15.0
           run_install: false
 
       - name: Enable Corepack
         run: corepack enable
 
       - name: Prepare pnpm
-        run: corepack prepare pnpm@8.15.0 --activate
+        run: corepack prepare pnpm@10.15.0 --activate
 
       - name: Activate pnpm
-        run: corepack prepare pnpm@8.15.0 --activate
+        run: corepack prepare pnpm@10.15.0 --activate
 
       - name: Install deps (monorepo)
         run: pnpm install --frozen-lockfile
