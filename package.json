@@ -31,7 +31,7 @@
   ],
   "author": "",
   "license": "UNLICENSED",
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "yarn@3.6.4",
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.0.0",
