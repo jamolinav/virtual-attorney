@@ -74,13 +74,8 @@ echo Handling node.js deployment.
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
   
-  echo "Creating .npmrc file"
-  echo "save-workspace-protocol=false" > .npmrc
-  echo "node-linker=hoisted" >> .npmrc
-  echo "shamefully-hoist=true" >> .npmrc
-  
-  echo "Installing pnpm packages"
-  pnpm install --frozen-lockfile
+  echo "Installing pnpm packages without frozen lockfile"
+  pnpm install --no-frozen-lockfile
   exitWithMessageOnError "pnpm install failed"
   
   echo "Building the application"

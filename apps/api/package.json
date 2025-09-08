@@ -1,5 +1,5 @@
 {
-  "name": "@repo/api",
+  "name": "@virtual-attorney/api",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,7 +23,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.0.0",
     "@prisma/client": "^5.0.0",
-    "@repo/database": "*",
+    "@virtual-attorney/database": "workspace:*",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "nestjs-prisma": "^0.23.0",
@@ -44,7 +44,7 @@
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
-    "@repo/eslint": "*",
+    "@virtual-attorney/eslint-config": "workspace:*",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
