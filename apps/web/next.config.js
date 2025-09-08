@@ -3,23 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: [
     "@virtual-attorney/ui",
-    "@virtual-attorney/database",
-    "react-bootstrap"
+    "@virtual-attorney/database"
   ],
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'avatars.githubusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lh3.googleusercontent.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
+    domains: [
+      'avatars.githubusercontent.com',
+      'lh3.googleusercontent.com',
+      'images.unsplash.com',
     ],
   },
   experimental: {
