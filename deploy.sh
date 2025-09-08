@@ -60,7 +60,7 @@ fi
 # Install pnpm
 if [ ! -e "$DEPLOYMENT_SOURCE/node_modules/.bin/pnpm" ]; then
   echo "Installing pnpm"
-  npm install -g pnpm
+  npm install -g pnpm@10.15.0
   exitWithMessageOnError "npm failed to install pnpm"
 fi
 
@@ -73,6 +73,12 @@ echo Handling node.js deployment.
 # 1. Install pnpm packages
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
+  
+  echo "Creating .npmrc file"
+  echo "save-workspace-protocol=false" > .npmrc
+  echo "node-linker=hoisted" >> .npmrc
+  echo "shamefully-hoist=true" >> .npmrc
+  
   echo "Installing pnpm packages"
   pnpm install --frozen-lockfile
   exitWithMessageOnError "pnpm install failed"
