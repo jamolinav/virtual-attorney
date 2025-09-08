@@ -31,7 +31,7 @@
   ],
   "author": "",
   "license": "UNLICENSED",
-  "packageManager": "pnpm@8.15.0",
+  "packageManager": "pnpm@10.15.0",
   "pnpm": {
     "overrides": {
       "react-dom": "18.3.1",
