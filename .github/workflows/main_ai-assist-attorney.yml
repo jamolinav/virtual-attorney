@@ -29,13 +29,79 @@ jobs:
           version: 10.15.0
           run_install: false
 
-      - name: Install dependencies and build
+      - name: Pre-process workspace references for npm compatibility
         run: |
-          # First install without frozen lockfile to update dependencies
-          pnpm install --no-frozen-lockfile
+          # Create a script to temporarily replace workspace:* references with *
+          cat > fix-workspace-refs.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          function processPackageJson(filePath) {
+            console.log(`Processing: ${filePath}`);
+            const content = fs.readFileSync(filePath, 'utf8');
+            try {
+              const pkg = JSON.parse(content);
+              let modified = false;
+
+              // Check and replace in dependencies
+              if (pkg.dependencies) {
+                Object.keys(pkg.dependencies).forEach(dep => {
+                  if (pkg.dependencies[dep].startsWith('workspace:')) {
+                    pkg.dependencies[dep] = '*';
+                    modified = true;
+                  }
+                });
+              }
+
+              // Check and replace in devDependencies
+              if (pkg.devDependencies) {
+                Object.keys(pkg.devDependencies).forEach(dep => {
+                  if (pkg.devDependencies[dep].startsWith('workspace:')) {
+                    pkg.devDependencies[dep] = '*';
+                    modified = true;
+                  }
+                });
+              }
+
+              // Save if modified
+              if (modified) {
+                fs.writeFileSync(filePath, JSON.stringify(pkg, null, 2));
+                console.log(`Updated: ${filePath}`);
+              }
+            } catch (e) {
+              console.error(`Error processing ${filePath}:`, e);
+            }
+          }
+
+          function findAndProcessPackageFiles(dir) {
+            const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+            for (const entry of entries) {
+              const fullPath = path.join(dir, entry.name);
+              
+              if (entry.isDirectory()) {
+                // Skip node_modules
+                if (entry.name !== 'node_modules') {
+                  findAndProcessPackageFiles(fullPath);
+                }
+              } else if (entry.name === 'package.json') {
+                processPackageJson(fullPath);
+              }
+            }
+          }
+
+          // Start processing from the root directory
+          findAndProcessPackageFiles('.');
+          EOF
           
-          # Install specific action packages
-          npm install @actions/core@1.6.0 @actions/http-client --no-save
+          # Run the script to fix workspace references
+          node fix-workspace-refs.js
+          
+          # Now install dependencies with npm
+          npm install @actions/core@1.6.0 @actions/http-client
+          
+          # Install with pnpm (after fixing references)
+          pnpm install --no-frozen-lockfile
           
           # Build the project
           pnpm run build --if-present

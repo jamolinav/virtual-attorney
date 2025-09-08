@@ -74,6 +74,72 @@ echo Handling node.js deployment.
 if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
   cd "$DEPLOYMENT_SOURCE"
   
+  echo "Creating script to fix workspace references"
+  cat > fix-workspace-refs.js << 'EOF'
+  const fs = require('fs');
+  const path = require('path');
+
+  function processPackageJson(filePath) {
+    console.log(`Processing: ${filePath}`);
+    const content = fs.readFileSync(filePath, 'utf8');
+    try {
+      const pkg = JSON.parse(content);
+      let modified = false;
+
+      // Check and replace in dependencies
+      if (pkg.dependencies) {
+        Object.keys(pkg.dependencies).forEach(dep => {
+          if (pkg.dependencies[dep].startsWith('workspace:')) {
+            pkg.dependencies[dep] = '*';
+            modified = true;
+          }
+        });
+      }
+
+      // Check and replace in devDependencies
+      if (pkg.devDependencies) {
+        Object.keys(pkg.devDependencies).forEach(dep => {
+          if (pkg.devDependencies[dep].startsWith('workspace:')) {
+            pkg.devDependencies[dep] = '*';
+            modified = true;
+          }
+        });
+      }
+
+      // Save if modified
+      if (modified) {
+        fs.writeFileSync(filePath, JSON.stringify(pkg, null, 2));
+        console.log(`Updated: ${filePath}`);
+      }
+    } catch (e) {
+      console.error(`Error processing ${filePath}:`, e);
+    }
+  }
+
+  function findAndProcessPackageFiles(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      
+      if (entry.isDirectory()) {
+        // Skip node_modules
+        if (entry.name !== 'node_modules') {
+          findAndProcessPackageFiles(fullPath);
+        }
+      } else if (entry.name === 'package.json') {
+        processPackageJson(fullPath);
+      }
+    }
+  }
+
+  // Start processing from the root directory
+  findAndProcessPackageFiles('.');
+  EOF
+  
+  echo "Fixing workspace references"
+  node fix-workspace-refs.js
+  
   echo "Installing pnpm packages without frozen lockfile"
   pnpm install --no-frozen-lockfile
   exitWithMessageOnError "pnpm install failed"
